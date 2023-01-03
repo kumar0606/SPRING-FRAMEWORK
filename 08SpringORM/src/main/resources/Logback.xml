@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<configuration scanPeriod="30 seconds" scan="true"
+	debug="true">
+
+	<property value="logs" name="LOG_PATH" />
+
+	<property value="${LOG_PATH}/archive" name="LOG_ARCHIVE" />
+
+	<timestamp datePattern="yyyyMMdd'T'HHmmss"
+		key="timestamp-by-second" />
+
+
+	-
+	<appender name="Console-Appender"
+		class="ch.qos.logback.core.ConsoleAppender">
+
+
+		-
+		<layout>
+
+			<pattern>%msg%n</pattern>
+
+		</layout>
+
+	</appender>
+
+
+	-
+	<appender name="File-Appender"
+		class="ch.qos.logback.core.FileAppender">
+
+		<file>${LOG_PATH}/logfile-${timestamp-by-second}.log</file>
+
+
+		-
+		<encoder>
+
+			<pattern>%msg%n</pattern>
+
+			<outputPatternAsHeader>true</outputPatternAsHeader>
+
+		</encoder>
+
+	</appender>
+
+
+	-
+	<appender name="RollingFile-Appender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+		<file>${LOG_PATH}/rollingfile.log</file>
+
+
+		-
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+
+			<fileNamePattern>${LOG_ARCHIVE}/rollingfile.log%d{yyyy-MM-dd}.log </fileNamePattern>
+
+			<maxHistory>30</maxHistory>
+
+			<totalSizeCap>100kB</totalSizeCap>
+
+		</rollingPolicy>
+
+
+		-
+		<encoder>
+
+			<pattern>%msg%n</pattern>
+
+		</encoder>
+
+	</appender>
+
+
+	-
+	<appender name="Async-Appender"
+		class="ch.qos.logback.classic.AsyncAppender">
+
+		<appender-ref ref="RollingFile-Appender" />
+
+	</appender>
+
+
+	-
+	<logger name="guru.springframework.blog.logbackxml"
+		additivity="false" level="info">
+
+		<appender-ref ref="Console-Appender" />
+
+		<appender-ref ref="File-Appender" />
+
+		<appender-ref ref="Async-Appender" />
+
+	</logger>
+
+
+	-
+	<root>
+
+		<appender-ref ref="Console-Appender" />
+
+	</root>
+
+</configuration>

@@ -1,11 +1,23 @@
 package com.EmployeModel;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="EmployeORM")
 public class Employe {
+	@Id
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int eid;
+	@Column
 	String ename;
+	@Column
 	double esal;
 	public Employe() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Employe(int eid, String ename, double esal) {

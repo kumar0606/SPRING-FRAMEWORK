@@ -18,11 +18,11 @@ public class jdbctemplateimpl implements StudentDAO {
 	public void save(Student student) {
 		jdbctemplate.update("INSERT INTO STUDENTJDBC VALUES(?,?,?)",
 				new Object[] { student.getSid(), student.getSname(), student.getSfee() });
-
+		
 	}
 
 	public void update(Student student) {
-		jdbctemplate.update("UPDATE STUDENTJDBC SET SNAME.=?,SFEE=? WHERE SID=?",
+		jdbctemplate.update("UPDATE STUDENTJDBC SET SNAME=?,SFEE=? WHERE SID=?",
 				new Object[] { student.getSname(), student.getSfee(), student.getSid() });
 		
 	}

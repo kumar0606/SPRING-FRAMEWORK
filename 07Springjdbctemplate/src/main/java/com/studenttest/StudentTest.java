@@ -10,12 +10,12 @@ public class StudentTest {
 public static void main(String[] args) {
 	ApplicationContext ac= new ClassPathXmlApplicationContext("spring.xml");
 	Studentcontroller stc=(Studentcontroller) ac.getBean("studentcontroller");
-	Student student=new Student(101, "ravi kumar", 300000.00);
-	//stc.save(student);
+	Student student=new Student(106, "dileep kumar", 300000.00);
+stc.save(student);
 	//stc.update(student);
 	//stc.deletebyid(102);
 //	System.out.println("success query");
-	stc.findAll().forEach(System.out::println);
+	//stc.findAll().forEach(System.out::println);
 	
 }
 }
